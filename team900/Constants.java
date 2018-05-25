@@ -1,6 +1,13 @@
-package org.usfirst.frc.team900.robot;
+package org.usfirst.frc.team900;
 
 public class Constants {
+	public final static int kSlotIdx = 0;
+	public final static int joyMultiplier = -1400;
+	public final static double kF = 0.312;
+	public final static double kP = 0.11;
+	public final static double kI = 0.0;
+	public final static double kD = 0.0;
+	public final static int feedback_id = 0;
 	//Not a factory
 	//Swerve
 	
@@ -51,11 +58,11 @@ public class Constants {
 
 
 	//RobotMap
-	public final static int LF_DRIVE = 0;
-	public final static int LB_DRIVE = 0;
+	public final static int LF_DRIVE = 10;
+	public final static int LB_DRIVE = 11;
 
-	public final static int RF_DRIVE = 1;
-	public final static int RB_DRIVE = 1;
+	public final static int RF_DRIVE = 20;
+	public final static int RB_DRIVE = 21;
 
 
 	public final static int SHOOTER = 0;

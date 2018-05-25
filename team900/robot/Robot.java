@@ -1,5 +1,6 @@
-
 package org.usfirst.frc.team900.robot;
+
+import org.usfirst.frc.team900.*;
 
 import java.util.List;
 
@@ -20,7 +21,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static Robot robot;
+	public static Tankdrive driveBase;
+	/*public static Robot robot;
 	public static Joystick joy1, joy2;
 	public static Swerve swerve;
 	public static Gyro gyro;
@@ -30,10 +32,12 @@ public class Robot extends IterativeRobot {
 
 	Command autoCommand;
 	SendableChooser<Command> autoChooser;
-	double test;
+	double test;*/
 
 	public void robotInit() {
-	    SmartDashboard.putNumber("Speed", .5);
+		driveBase = new Tankdrive();
+		driveBase.setPID();
+	    /*SmartDashboard.putNumber("Speed", .5);
 	    SmartDashboard.putNumber("x", -15);
 	    SmartDashboard.putNumber("y", 75);
 	    SmartDashboard.putNumber("driveSpeed", .5);
@@ -58,45 +62,46 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("SideGearAutoRight", new SideGearAutoRight());
 		//autoChooser.addObject("Shooty", new Shoot(15));
 		//		adc=new ADC(edu.wpi.first.wpilibj.I2C.Port.kMXP);
-		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		SmartDashboard.putData("Autonomous mode chooser", autoChooser);*/
 	}
 
 
 	public void autonomousInit() {
-		gyro.reset();
+		/*gyro.reset();
 		gear.encoder.reset();
 		Robot.gear.liftPID.setSetpoint(0);
 		if (autoCommand != null) autoCommand.cancel();
 		autoCommand = (Command) autoChooser.getSelected();
-		autoCommand.start();
+		autoCommand.start();*/
 	}
 
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("gear encoder", gear.encoder.get());
+		//SmartDashboard.putNumber("gear encoder", gear.encoder.get());
 	}
 
 	/**
 	 * This function is called periodically during operator control
 	 */
 	public void teleopInit(){
-		if (autoCommand != null) autoCommand.cancel();
+		/*if (autoCommand != null) autoCommand.cancel();
 		gyro.reset();   
 		swerve.setPivot(0, 0);
-		shooter.init();
+		shooter.init();*/
 	}
 	public void teleopPeriodic() {
-		swerve.move();
+		driveBase.drive();
+		/*swerve.move();
 		shooter.shoot();
 		gear.gear();
 		winch.winch();
-		SmartDashboard.putNumber("Gyro", gyro.getAngle());
+		SmartDashboard.putNumber("Gyro", gyro.getAngle());*/
 	}
 	public void disabledInit() {
-		if (autoCommand != null) autoCommand.cancel();
+		//if (autoCommand != null) autoCommand.cancel();
 	}
 	public void disabledPeriodic(){
-		swerve.smartDash();
+		//swerve.smartDash();
 	}
 	/**
 	 * This function is called periodically during test mode
