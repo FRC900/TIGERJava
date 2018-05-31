@@ -2,12 +2,12 @@ package org.usfirst.frc.team900;
 
 public class Constants {
 	public final static int kSlotIdx = 0;
-	public final static int joyMultiplier = -1400;
-	public final static double kF = 0.312;
-	public final static double kP = 0.11;
+	public final static double kF = 0.327;
+	public final static double kP = 0.35;
 	public final static double kI = 0.0;
-	public final static double kD = 0.0;
+	public final static double kD = 3.5;
 	public final static int feedback_id = 0;
+	public final static int max_speed = 3125;
 	//Not a factory
 	//Swerve
 	

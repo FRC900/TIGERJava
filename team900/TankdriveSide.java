@@ -30,11 +30,12 @@ public class TankdriveSide {
 	    front.config_kP(Constants.kSlotIdx, kP, 10);
 	    front.config_kI(Constants.kSlotIdx, kI, 10);
 	    front.config_kD(Constants.kSlotIdx, kD, 10);
-	    front.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+	    front.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kSlotIdx, 0);
+	    front.setSensorPhase(true);
 	    back.follow(front);
 	}
 	
 	void set(double joyValue) {
-		front.set(ControlMode.Velocity, joyValue);
+		front.set(ControlMode.Velocity, -1 * joyValue * Constants.max_speed);
 	}
 }
