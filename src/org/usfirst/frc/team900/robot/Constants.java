@@ -1,4 +1,4 @@
-package org.usfirst.frc.team900;
+package org.usfirst.frc.team900.robot;
 
 public class Constants {
 	public final static int kSlotIdx = 0;

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team900;
+package org.usfirst.frc.team900.robot;
 
 import org.usfirst.frc.team900.Constants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;

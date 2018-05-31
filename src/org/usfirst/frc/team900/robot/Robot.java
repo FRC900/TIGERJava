@@ -83,10 +83,10 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		autoAction.init();
-		autoAction.run();
 	}
 
 	public void autonomousPeriodic() {
+		autoAction.run();
 		Scheduler.getInstance().run();
 	}
 
