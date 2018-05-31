@@ -1,24 +1,20 @@
 package org.usfirst.frc.team900.robot;
 
-import org.usfirst.frc.team900.*;
-
 import edu.wpi.first.wpilibj.DriverStation;
 
 public class Autonomous {
 	private Tankdrive driveBase;
-	private DriverStation ds;
 	
-	public Autonomous(Tankdrive drive, DriverStation station) {
+	public Autonomous(Tankdrive drive) {
 		driveBase = drive;
-		ds = station;
 	}
 	
 	public void init() {
 	}
 	
 	public void run() {
-		while(ds.getInstance().getMatchTime() > (15 - Constants.autoTime)) {
-			driveBase.drive(0.0, Constants.autoSpeed); //from -1 to 1
+		if(DriverStation.getInstance().getMatchTime() > (15 - Constants.autoTime)) {
+			driveBase.drive(Constants.autoSpeed, Constants.autoSpeed); //from -1 to 1
 		}
 	}
 	

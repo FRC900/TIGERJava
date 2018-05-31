@@ -7,7 +7,7 @@ public class Constants {
 	public final static double kI = 0.0;
 	public final static double kD = 3.5;
 	public final static int feedback_id = 0;
-	public final static int max_speed = 3125;
+	public final static int maxSpeed = 3125;
 	
 	public final static double autoSpeed = 0.75;
 	public final static double autoTime = 5;
@@ -61,11 +61,11 @@ public class Constants {
 
 
 	//RobotMap
-	public final static int LF_DRIVE = 10;
-	public final static int LB_DRIVE = 11;
+	public final static int FL_DRIVE = 10;
+	public final static int BL_DRIVE = 11;
 
-	public final static int RF_DRIVE = 20;
-	public final static int RB_DRIVE = 21;
+	public final static int FR_DRIVE = 20;
+	public final static int BR_DRIVE = 21;
 
 
 	public final static int SHOOTER = 0;

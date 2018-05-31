@@ -44,10 +44,10 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		driveBase = new Tankdrive();
-		driveBase.setPID();
+		driveBase.setup();
 		
 		controller = new XboxController(0);
-		autoAction = new Autonomous(driveBase, ds);
+		autoAction = new Autonomous(driveBase);
 		ds = DriverStation.getInstance();
 		
 		SmartDashboard.putNumber("Drive Forward Speed", Constants.autoSpeed);
