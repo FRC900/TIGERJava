@@ -4,10 +4,14 @@ import org.usfirst.frc.team900.*;
 
 import java.util.List;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.GenericHID;
+
 //import org.usfirst.frc.team900.robot.commands.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -22,6 +26,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	public static Tankdrive driveBase;
+	public static XboxController controller;
+	
+	public static Autonomous autoAction;
+	public static DriverStation ds;
 	/*public static Robot robot;
 	public static Joystick joy1, joy2;
 	public static Swerve swerve;
@@ -37,6 +45,13 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		driveBase = new Tankdrive();
 		driveBase.setPID();
+		
+		controller = new XboxController(0);
+		autoAction = new Autonomous(driveBase, ds);
+		ds = DriverStation.getInstance();
+		
+		SmartDashboard.putNumber("Drive Forward Speed", Constants.autoSpeed);
+		SmartDashboard.putNumber("Drive Forward Time", Constants.autoTime);
 	    /*SmartDashboard.putNumber("Speed", .5);
 	    SmartDashboard.putNumber("x", -15);
 	    SmartDashboard.putNumber("y", 75);
@@ -67,30 +82,22 @@ public class Robot extends IterativeRobot {
 
 
 	public void autonomousInit() {
-		/*gyro.reset();
-		gear.encoder.reset();
-		Robot.gear.liftPID.setSetpoint(0);
-		if (autoCommand != null) autoCommand.cancel();
-		autoCommand = (Command) autoChooser.getSelected();
-		autoCommand.start();*/
+		autoAction.init();
+		autoAction.run();
 	}
 
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		//SmartDashboard.putNumber("gear encoder", gear.encoder.get());
 	}
 
 	/**
 	 * This function is called periodically during operator control
 	 */
 	public void teleopInit(){
-		/*if (autoCommand != null) autoCommand.cancel();
-		gyro.reset();   
-		swerve.setPivot(0, 0);
-		shooter.init();*/
+		autoAction.end();
 	}
 	public void teleopPeriodic() {
-		driveBase.drive();
+		driveBase.drive(controller.getY(GenericHID.Hand.kLeft), controller.getY(GenericHID.Hand.kRight));
 		/*swerve.move();
 		shooter.shoot();
 		gear.gear();
