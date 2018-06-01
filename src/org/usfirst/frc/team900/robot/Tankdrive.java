@@ -45,7 +45,7 @@ public class Tankdrive extends Subsystem {
 	public double deadzone(double value) { //value input is from -1 to 1
 		if(Math.abs(value) < 0.2) //very small joystick inputs should be ignored
 			value = 0;
-		value = Math.pow(value, 3); //cube it for more sensivity
+		value = Math.pow(value, 3); //cube it for more sensitivity
 		return value;
 	}
 
