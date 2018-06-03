@@ -2,6 +2,9 @@
 package org.usfirst.frc.team900.robot; 
 
 //all of these import libraries that are used in this file 
+
+import org.usfirst.frc.team900.robot.commands.*;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -31,6 +34,12 @@ public class Robot extends IterativeRobot {
 		//these two lines display information about the autonomous action on the SmartDashboard
 		SmartDashboard.putNumber("Drive Forward Speed", Constants.autoSpeed);
 		SmartDashboard.putNumber("Drive Forward Time", Constants.autoTime);
+		
+		
+		//These lines create a menu on the smart dashboard for choosing an autonomous mode
+		autoChooser = new SendableChooser<Command>();
+		autoChooser.addObject("Drive Forward", new DriveForwardAuto());
+		autoChooser.addDefault("Do Nothing",  new DoNothingAuto());
 	}
 
 	//function is run when autonomous begins
