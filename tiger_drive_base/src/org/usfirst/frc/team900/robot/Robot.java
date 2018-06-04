@@ -20,6 +20,9 @@ public class Robot extends IterativeRobot {
 	public static Autonomous autoAction; //initialize the auto action
 	public static DriverStation ds; //initialize the driver station
 
+	Command autoCommand;
+
+	
 	//this function is run when the robot is initialized
 	public void robotInit() {
 		driveBase = new Tankdrive(); //create the drive base (defines all of the motor controllers and related terms)
