@@ -40,16 +40,18 @@ public class Robot extends IterativeRobot {
 		autoChooser = new SendableChooser<Command>();
 		autoChooser.addObject("Drive Forward", new DriveForwardAuto());
 		autoChooser.addDefault("Do Nothing",  new DoNothingAuto());
+		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 	}
 
 	//function is run when autonomous begins
 	public void autonomousInit() {
-		autoAction.init();
+		if (autoCommand != null) autoCommand.cancel();
+		autoCommand = (Command) autoChooser.getSelected();
+		autoCommand.start();
 	}
 	
 	//function is called over and over again during autonomous
 	public void autonomousPeriodic() {
-		autoAction.run();
 		Scheduler.getInstance().run(); //what does this actually do? no one knows...
 	}
 	
