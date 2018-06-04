@@ -9,7 +9,9 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //now we create a class called Robot, which is a subclass of IterativeRobot. IterativeRobot is a FRC-defined thing.
@@ -21,6 +23,7 @@ public class Robot extends IterativeRobot {
 	public static DriverStation ds; //initialize the driver station
 
 	Command autoCommand;
+	SendableChooser<Command> autoChooser;
 
 	
 	//this function is run when the robot is initialized
