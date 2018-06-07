@@ -16,23 +16,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //now we create a class called Robot, which is a subclass of IterativeRobot. IterativeRobot is a FRC-defined thing.
 public class Robot extends IterativeRobot {
-	public static Tankdrive driveBase; //initialize the drive base
-	public static XboxController controller; //initialize the joystick
+	public static Tankdrive driveBase; 			//initialize the drive base
+	public static XboxController controller; 	//initialize the joystick
 	
-	public static Autonomous autoAction; //initialize the auto action
-	public static DriverStation ds; //initialize the driver station
+	public static DriverStation ds; 			//initialize the driver station
 
-	Command autoCommand;
-	SendableChooser<Command> autoChooser;
+	Command autoCommand;						//Variable to receive the chosen autonomous command
+	SendableChooser<Command> autoChooser;		//Autonomous chooser for the smart dashboard
 
 	
 	//this function is run when the robot is initialized
 	public void robotInit() {
-		driveBase = new Tankdrive(); //create the drive base (defines all of the motor controllers and related terms)
-		driveBase.setup(); //setup followers, reverse the outputs of certain Talons, etc.
+		driveBase = new Tankdrive(); 		//create the drive base (defines all of the motor controllers and related terms)
+		driveBase.setup(); 					//setup followers, reverse the outputs of certain Talons, etc.
 		
 		controller = new XboxController(0);
-		autoAction = new Autonomous(driveBase);
 		ds = DriverStation.getInstance(); /* this is how you access information from the Driver Station. See more at 
 										   * https://wpilib.screenstepslive.com/s/currentCS/m/java/l/599722-driver-station-input-overview
 										   */
@@ -43,27 +41,27 @@ public class Robot extends IterativeRobot {
 		
 		
 		//These lines create a menu on the smart dashboard for choosing an autonomous mode
-		autoChooser = new SendableChooser<Command>();
-		autoChooser.addObject("Drive Forward", new DriveForwardAuto());
-		autoChooser.addDefault("Do Nothing",  new DoNothingAuto());
-		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		autoChooser = new SendableChooser<Command>();						//instantiate autoChooser
+		autoChooser.addObject("Drive Forward", new DriveForwardAuto());		//Add drive forward auto
+		autoChooser.addDefault("Do Nothing",  new DoNothingAuto());			//Add do nothing auto
+		SmartDashboard.putData("Autonomous mode chooser", autoChooser);		//put the chooser on the smart dashboard
 	}
 
 	//function is run when autonomous begins
 	public void autonomousInit() {
-		if (autoCommand != null) autoCommand.cancel();
-		autoCommand = (Command) autoChooser.getSelected();
-		autoCommand.start();
+		if (autoCommand != null) autoCommand.cancel();		//clear autoCommand
+		autoCommand = (Command) autoChooser.getSelected();	//get the chosen command from the chooser
+		autoCommand.start();								//run the chosen autonomous
 	}
 	
 	//function is called over and over again during autonomous
 	public void autonomousPeriodic() {
-		Scheduler.getInstance().run(); //what does this actually do? no one knows...
+		Scheduler.getInstance().run(); 	//what does this actually do? no one knows...
 	}
 	
 	//this function is called when autonomous ends
 	public void teleopInit(){
-		autoAction.end(); //make the robot stop performing auto actions!
+		autoCommand.cancel(); 	//make the robot stop performing auto actions!
 	}
 	
 	//this function is called over and over again during autonomous
