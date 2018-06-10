@@ -1,6 +1,7 @@
 package org.usfirst.frc.team900.robot;
 
 //this file contains all of the constant values that are used throughout the code.
+//Any value in here can be accessed from the rest of the code with <Constants.FL_DRIVE>
 public class Constants {
 	//for defining Talon IDs
 	public final static int FL_DRIVE = 10;
