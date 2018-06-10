@@ -16,6 +16,8 @@ public class Constants {
 	//for autonomous
 	public final static double autoSpeed = 0.75;
 	public final static double autoTime = 5;
+	public final static double autoDelay = 1;
+
 	
 	//PID things
 	public final static int kSlotIdx = 0;

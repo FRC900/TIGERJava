@@ -36,9 +36,9 @@ public class Robot extends IterativeRobot {
 										   */
 		
 		//these two lines display information about the autonomous action on the SmartDashboard
-		SmartDashboard.putNumber("Drive Forward Speed", Constants.autoSpeed);
-		SmartDashboard.putNumber("Drive Forward Time", Constants.autoTime);
-		
+		SmartDashboard.putNumber("Auto Drive Forward Speed", Constants.autoSpeed);
+		SmartDashboard.putNumber("Auto Drive Forward Time", Constants.autoTime);
+		SmartDashboard.putNumber("Auto Drive Forward Delay", Constants.autoDelay);
 		
 		//These lines create a menu on the smart dashboard for choosing an autonomous mode
 		autoChooser = new SendableChooser<Command>();						//instantiate autoChooser
@@ -50,8 +50,10 @@ public class Robot extends IterativeRobot {
 	//function is run when autonomous begins
 	public void autonomousInit() {
 		if (autoCommand != null) autoCommand.cancel();		//clear autoCommand
-		autoCommand = (Command) autoChooser.getSelected();	//get the chosen command from the chooser
+		//autoCommand = (Command) autoChooser.getSelected();	//get the chosen command from the chooser
+		autoCommand = new DriveForwardAuto();
 		autoCommand.start();								//run the chosen autonomous
+		System.out.println("auto inint");
 	}
 	
 	//function is called over and over again during autonomous
@@ -66,7 +68,7 @@ public class Robot extends IterativeRobot {
 	
 	//this function is called over and over again during autonomous
 	public void teleopPeriodic() {
-		driveBase.drive(controller.getY(GenericHID.Hand.kLeft), controller.getY(GenericHID.Hand.kRight)); //tell the robot to drive with inputs from the controllers
+		driveBase.drive(-1*controller.getY(GenericHID.Hand.kLeft), -1*controller.getY(GenericHID.Hand.kRight)); //tell the robot to drive with inputs from the controllers
 	}
 	
 	//these three are probably not useful. ignore for now.

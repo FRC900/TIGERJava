@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DoNothingAuto extends Command{
 	
 	public void execute() {
-		
+		System.out.println("bad auto");
 	}
 	
 	public boolean isFinished() {
