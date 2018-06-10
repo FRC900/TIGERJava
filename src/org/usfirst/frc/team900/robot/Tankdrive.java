@@ -20,8 +20,8 @@ public class Tankdrive extends Subsystem {
 		this.frontLeft = new WPI_TalonSRX(Constants.FL_DRIVE);
 		
 		//assign masters and followers
-	    backRight.follow(frontRight);	
-	    backLeft.follow(frontLeft);	
+	    backRight.follow(frontRight);	//Make the back right talon follow the front right
+	    backLeft.follow(frontLeft);		//Make the back left talon follow the front left
 	    
 	    //make the left and right drive in the same direction
 		this.frontRight.setInverted(Constants.rightReversed);
@@ -29,8 +29,8 @@ public class Tankdrive extends Subsystem {
 		this.frontLeft.setInverted(Constants.leftReversed);
 		this.backLeft.setInverted(Constants.leftReversed);
 
-		//set the PID values
-		this.kF = Constants.kF;
+		//set the PID values			//REMOVE THIS CODE
+		this.kF = Constants.kF;			//THIS IS JUST FOR US
 		this.kP = Constants.kP;
 		this.kI = Constants.kI;
 		this.kD = Constants.kD;
@@ -41,19 +41,25 @@ public class Tankdrive extends Subsystem {
 	protected void initDefaultCommand() {
 	}
 	
-	//for scaling joysticks, to improve driving quality 
-	public double deadzone(double value) { //value input is from -1 to 1
-		if(Math.abs(value) < 0.2) //very small joystick inputs should be ignored
+	//for scaling and deadzoning joysticks, to improve driving quality 
+	public double deadzone(double value) { 		//value input is from -1 to 1
+		if(Math.abs(value) < 0.2) 				//very small joystick inputs should be ignored
 			value = 0;
-		value = Math.pow(value, 3); //cube it for more sensitivity
+		value = Math.pow(value, 3); 			//cube the input for more sensitivity and robot control
 		return value;
 	}
 
-	//drive the robot with joystick inputs
+	//Used to deadzone and scale joystick inputs before setting the input to the talons
+	public void scaledDrive(double lValue, double rValue) {
+		this.drive(deadzone(lValue), deadzone(rValue));
+	}
+	
+	//Set the lValue and rValue directly to the talons
+	//called by scaledDrive and during autonomous to ignore the scaling and deadzone
 	public void drive(double lValue, double rValue) { //lValue and rValue are -1 to 1
 		//if using PercentOutput
-		 frontLeft.set(ControlMode.PercentOutput, deadzone(lValue));
-		 frontRight.set(ControlMode.PercentOutput, deadzone(rValue));
+		 frontLeft.set(ControlMode.PercentOutput, lValue);
+		 frontRight.set(ControlMode.PercentOutput, rValue);
 		
 		//if using Velocity PID, uncomment
 		/*frontLeft.set(ControlMode.Velocity, deadzone(lValue) * Constants.maxSpeed);
