@@ -18,22 +18,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //now we create a class called Robot, which is a subclass of IterativeRobot. IterativeRobot is an FRC-defined construct.
 public class Robot extends IterativeRobot {
 	
-////////////////////////	THIS CODE DOESN'T NEED TO BE CHANGED	//////////////////////////////////////
-	//initialize the driver station																		//
-	public static DriverStation ds; 																	//
-																										//
-	//Variable to receive the chosen autonomous command													//
-	Command autoCommand;																				//
-																										//
-	//Autonomous chooser for the smart dashboard														//
-	SendableChooser<Command> autoChooser;																//
-																										//
-	//initialize the joystick																			//
-	public static XboxController controller;															//
-																										//
-	//initialize the drive base																			//
-	public static Tankdrive driveBase;																	//	
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////	THIS CODE DOESN'T NEED TO BE CHANGED	/////////////////
+	//initialize the driver station							
+	public static DriverStation ds;
+	
+	//Variable to receive the chosen autonomous command
+	Command autoCommand;
+
+	//Autonomous chooser for the smart dashboard
+	SendableChooser<Command> autoChooser;
+	
+	//initialize the joystick
+	public static XboxController controller;
+
+	//initialize the drive base
+	public static Tankdrive driveBase;
+//////////////////////////////////////////////////////////////////////////
 
 
 		
