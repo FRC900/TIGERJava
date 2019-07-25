@@ -24,7 +24,9 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * This is a demo program showing the use of the RobotDrive class, specifically
- * it contains the code necessary to operate a robot with tank drive.
+ * it contains the code necessary to operate a robot with tank drive using PID
+ * 
+ * DO NOT USE THIS CODE!! IT NEEDS TO BE UPDATED!!
  */
 public class Robot extends IterativeRobot {
     private XboxController controller = new XboxController(0); //multiply by -1400
